@@ -22,7 +22,6 @@ class TimerController extends GetxController {
         (timer) {
           duration.value = duration.value.subtract(Duration(seconds: 1));
           theTime--;
-          print(theTime.value);
           if (theTime.value == 0) {
             timer.cancel();
             isCount.value = false;
