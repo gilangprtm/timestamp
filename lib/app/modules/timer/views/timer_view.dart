@@ -18,9 +18,7 @@ class TimerView extends GetView<TimerController> {
               return GestureDetector(
                 onTap: () => c.changeTime(),
                 child: Text(
-                  c.theTime == 0
-                      ? "DONE"
-                      : "${c.duration.value.hour} : ${c.duration.value.minute} : ${c.duration.value.second}",
+                  "${c.duration.value.hour} : ${c.duration.value.minute} : ${c.duration.value.second}",
                   style: AppFont.h1,
                 ),
               );
@@ -30,6 +28,18 @@ class TimerView extends GetView<TimerController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              ElevatedButton(
+                child: Icon(
+                  Icons.stop,
+                  size: 30,
+                ),
+                onPressed: () => c.countStop(),
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(60, 60),
+                  shape: const CircleBorder(),
+                ),
+              ),
+              15.widthBox,
               ElevatedButton(
                 child: Obx(() {
                   return Icon(
@@ -44,18 +54,6 @@ class TimerView extends GetView<TimerController> {
                     c.countPause();
                   }
                 },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(60, 60),
-                  shape: const CircleBorder(),
-                ),
-              ),
-              15.widthBox,
-              ElevatedButton(
-                child: Icon(
-                  Icons.stop,
-                  size: 30,
-                ),
-                onPressed: () => c.countStop(),
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(60, 60),
                   shape: const CircleBorder(),
