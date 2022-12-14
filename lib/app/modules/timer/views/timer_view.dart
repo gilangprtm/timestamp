@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:timestamp/app/utils/extension/box_extension.dart';
 import 'package:timestamp/app/utils/theme/theme.dart';
 import '../controllers/timer_controller.dart';
 
 class TimerView extends GetView<TimerController> {
+  final TimerController c = Get.put(TimerController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,21 +14,34 @@ class TimerView extends GetView<TimerController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text(
-              '01:10:20',
-              style: AppFont.h1,
-            ),
+            child: Obx(() {
+              return GestureDetector(
+                onTap: () => c.changeTime(),
+                child: Text(
+                  c.theTime == 0 ? "DONE" : c.theTime.toString(),
+                  style: AppFont.h1,
+                ),
+              );
+            }),
           ),
           40.heightBox,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                child: Icon(
-                  Icons.play_arrow,
-                  size: 30,
-                ),
-                onPressed: () {},
+                child: Obx(() {
+                  return Icon(
+                    c.isCount.value == false ? Icons.play_arrow : Icons.pause,
+                    size: 30,
+                  );
+                }),
+                onPressed: () {
+                  if (c.isCount.value == false) {
+                    c.countDown();
+                  } else {
+                    c.countPause();
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(60, 60),
                   shape: const CircleBorder(),
@@ -38,7 +53,7 @@ class TimerView extends GetView<TimerController> {
                   Icons.stop,
                   size: 30,
                 ),
-                onPressed: () {},
+                onPressed: () => c.countStop(),
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(60, 60),
                   shape: const CircleBorder(),
