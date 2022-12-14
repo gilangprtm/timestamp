@@ -18,7 +18,9 @@ class TimerView extends GetView<TimerController> {
               return GestureDetector(
                 onTap: () => c.changeTime(),
                 child: Text(
-                  c.theTime == 0 ? "DONE" : c.theTime.toString(),
+                  c.theTime == 0
+                      ? "DONE"
+                      : "${c.duration.value.hour} : ${c.duration.value.minute} : ${c.duration.value.second}",
                   style: AppFont.h1,
                 ),
               );
