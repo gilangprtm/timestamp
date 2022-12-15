@@ -12,7 +12,7 @@ class StopWatchView extends GetView<StopWatchController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Center(
             child: Obx(() {
@@ -75,6 +75,36 @@ class StopWatchView extends GetView<StopWatchController> {
               ),
             ],
           ),
+          Container(
+            padding: EdgeInsets.all(20),
+            height: 300,
+            child: SingleChildScrollView(
+              child: Obx(() {
+                return ListView.builder(
+                  itemCount: c.lap.length,
+                  shrinkWrap: true,
+                  physics: const ScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              Icons.flag_rounded,
+                              color: AppColor.blue2,
+                            ),
+                            Text("${c.lap[index]}"),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }),
+            ),
+          )
         ],
       ),
     );

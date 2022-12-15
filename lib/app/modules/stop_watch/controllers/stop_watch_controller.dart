@@ -7,6 +7,11 @@ class StopWatchController extends GetxController {
   Rx<DateTime> duration = DateTime(DateTime.now().year).obs;
   RxList lap = [].obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
   void countStart() {
     if (isCount.value == false) {
       isCount.value = true;
@@ -32,6 +37,7 @@ class StopWatchController extends GetxController {
       7,
     );
     isCount.value = false;
+    lap.clear();
   }
 
   void countLap() {
@@ -39,7 +45,6 @@ class StopWatchController extends GetxController {
       var time =
           "${duration.value.hour} : ${duration.value.minute} : ${duration.value.second}";
       lap.add(time);
-      print(lap);
     }
   }
 }
