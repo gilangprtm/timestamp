@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:get/get.dart';
 import 'package:timestamp/app/utils/extension/box_extension.dart';
-import 'package:timestamp/app/utils/theme/app_color.dart';
+import 'package:timestamp/app/utils/theme/theme.dart';
 
 class TimerController extends GetxController {
   RxBool isCount = false.obs;
@@ -59,7 +60,7 @@ class TimerController extends GetxController {
     Get.bottomSheet(Container(
       height: 300,
       decoration: BoxDecoration(
-        color: AppColor.white,
+        color: Colors.grey[500],
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(40),
           topRight: Radius.circular(40),

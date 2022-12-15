@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:timestamp/app/modules/stop_watch/views/stop_watch_view.dart';
 import 'package:timestamp/app/modules/timer/views/timer_view.dart';
@@ -24,6 +25,12 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    initSplash();
     super.onInit();
+  }
+
+  void initSplash() async {
+    await Future.delayed(Duration(seconds: 2));
+    FlutterNativeSplash.remove();
   }
 }
