@@ -2,6 +2,7 @@
     package="com.edjavu.timestamp">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="com.android.vending:BILLING" />
    <application
         android:label="Timer Watch"
         android:name="${applicationName}"

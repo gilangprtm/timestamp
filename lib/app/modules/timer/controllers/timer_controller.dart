@@ -46,6 +46,11 @@ class TimerController extends GetxController {
 
   void countStop() {
     timer!.cancel();
+    duration.value = DateTime(
+      2017,
+      9,
+      7,
+    );
     isCount.value = false;
     theTime.value = 0;
   }
